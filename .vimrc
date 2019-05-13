@@ -1,9 +1,12 @@
 "----------------------- Vanilla Vim Settings -------------------"
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype plugin on                 " required
+set noshowmode
 set tabstop=2
 set shiftwidth=0
 syntax on
+
+set omnifunc=syntaxcomplete#Complete
 
 "leader key activation visual feedback
 set showcmd
@@ -34,30 +37,63 @@ endif
 " Needed for DevIcons
 set encoding=UTF-8
 
+
 "----------------------- vim-plug Settings -------------------"
 
 call plug#begin('~/.vim/plugged')
-
-" plugins
-Plug 'qpkorr/vim-bufkill'
 Plug 'VundleVim/Vundle.vim'
-Plug 'lifepillar/vim-solarized8'
+
+
+" --- Cosmetic ---
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'
+Plug 'ryanoasis/vim-devicons'
+
+
+" --- Navigation ---
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'universal-ctags/ctags'
 Plug 'vim-scripts/taglist.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'christoomey/vim-tmux-navigator'
+
+
+" --- Linter/Code Completion ---
+Plug 'w0rp/ale'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': 'DoRemote' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+
+" --- Misc QOL --- 
 Plug 'tomtom/tcomment_vim'
+Plug 'qpkorr/vim-bufkill'
 
 
-
-
-" all of plugins must be added before the following line
 call plug#end()
+
+" -------------------- Plugin Settings ---------------------
+
+" deoplete configuration
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+
+let g:tern_request_timeout = 1
+let g:tern_request_timeout = 6000
+let g:tern#command = ["tern"]
+let g:tern#arguments = [" — persistent"]
 
 " following are for linter:
 nmap <silent> <C-k> <Plug>(ale_previous)
@@ -75,8 +111,6 @@ set background=dark
 let g:gruvbox_italic=1
 "let g:solarized_term_italics=1
 "let g:solarized_visibility='high'
-set noshowmode
-set tabstop=2
 
 "disable ale
 "set runtimepath-=~/.vim/bundle/ale
