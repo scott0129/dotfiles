@@ -2,22 +2,25 @@
 set nocompatible              " be iMproved, required
 filetype plugin on                 " required
 set noshowmode
-set tabstop=2
 set shiftwidth=0
+set tabstop=2
 syntax on
 
 set omnifunc=syntaxcomplete#Complete
 
-"leader key activation visual feedback
+" leader key activation visual feedback
 set showcmd
 
-"rebind leader key
+" rebind leader key
 let mapleader=" "
 
-"open/close tag list
+" open/close tag list
 nnoremap <leader>t :TlistToggle<CR>
 
-"open/close nerdtree
+" fly through buffers
+nnoremap <leader>l :ls<CR>:b<space>
+
+" open/close nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
 
 
@@ -25,21 +28,11 @@ inoremap jj <ESC>
 set number relativenumber
 
 
-" the following are for colors:
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'hard'
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
 " Needed for DevIcons
 set encoding=UTF-8
 
 
 "----------------------- vim-plug Settings -------------------"
-
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 
@@ -61,17 +54,6 @@ Plug 'scrooloose/nerdtree'
 " --- Linter/Code Completion ---
 Plug 'w0rp/ale'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': 'DoRemote' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
 
 " --- Misc QOL --- 
 Plug 'tomtom/tcomment_vim'
@@ -81,19 +63,6 @@ Plug 'qpkorr/vim-bufkill'
 call plug#end()
 
 " -------------------- Plugin Settings ---------------------
-
-" deoplete configuration
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-
-let g:tern_request_timeout = 1
-let g:tern_request_timeout = 6000
-let g:tern#command = ["tern"]
-let g:tern#arguments = [" — persistent"]
 
 " following are for linter:
 nmap <silent> <C-k> <Plug>(ale_previous)
@@ -106,9 +75,21 @@ let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night',
       \ }
 
+" NERDtree Settings:
+:let g:NERDTreeWinSize=20
+
+" Gruvbox Settings:
+"let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = 'hard'
 set background=dark
 "set background=light
-let g:gruvbox_italic=1
+"if exists('+termguicolors')
+"  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"  set termguicolors
+"endif
+
 "let g:solarized_term_italics=1
 "let g:solarized_visibility='high'
 

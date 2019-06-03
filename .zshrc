@@ -2,21 +2,31 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/cpu-642l/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
+
+# Set editor to neovim
+if command -v nvim >/dev/null 2>&1; then
+ export EDITOR="nvim"
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="refined"
+ZSH_THEME="agnoster"
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
+fi
+
+# Importable configurations.
+if [ -f ~/.importable_conf ]; then
+    source ~/.importable_conf
 fi
 
 #Allows for italics in tmux vim
-export TERM=xterm-256color-italic
+#export TERM=xterm-256color-italic
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
