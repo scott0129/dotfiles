@@ -1,4 +1,4 @@
-alias ciscovpn=/opt/cisco/anyconnect/bin/vpnui
+alias ssh="TERM=xterm-256color ssh"
 alias tmux="TERM=screen-256color-bce tmux"
 
 if command -v nvim >/dev/null 2>&1; then
