@@ -23,8 +23,6 @@ nnoremap <leader>l :ls<CR>:b<space>
 " open/close nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
 
-
-inoremap jj <ESC>
 set number relativenumber
 
 
