@@ -20,6 +20,25 @@ nnoremap <leader>t :TlistToggle<CR>
 " fly through buffers
 nnoremap <leader>l :ls<CR>:b<space>
 
+" fzf through buffers
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+
 " open/close nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
 
@@ -47,10 +66,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'universal-ctags/ctags'
 Plug 'vim-scripts/taglist.vim'
 Plug 'scrooloose/nerdtree'
+Plug '~/.fzf'
 
 
 " --- Linter/Code Completion ---
 Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
+
 
 
 " --- Misc QOL --- 
@@ -61,6 +83,7 @@ Plug 'qpkorr/vim-bufkill'
 call plug#end()
 
 " -------------------- Plugin Settings ---------------------
+
 
 " following are for linter:
 nmap <silent> <C-k> <Plug>(ale_previous)
