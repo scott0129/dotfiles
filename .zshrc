@@ -25,6 +25,11 @@ if [ -f ~/.importable_conf ]; then
     source ~/.importable_conf
 fi
 
+# FZF configuration for zsh
+if [ -f ~/.fzf.zsh ]; then 
+	source ~/.fzf.zsh
+fi
+
 #Allows for italics in tmux vim
 #export TERM=xterm-256color-italic
 
@@ -112,5 +117,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
