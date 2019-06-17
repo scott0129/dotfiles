@@ -3,7 +3,11 @@ set nocompatible          		   		" Not compatible with vi
 filetype plugin on              	   	" Because I'm a pleb and use plugins
 set noshowmode							" Doesn't show --INSERT--
 set tabstop=4							" 4 space tabs
+set softtabstop=0						" No softtab
 set shiftwidth=0						" shiftwidth = tabstop
+set expandtab							" use spaces not tabs
+set smarttab							" backspace deletes tab-amount of spaces
+
 
 syntax on								" Syntax highlighting! Colors!
 
@@ -27,22 +31,22 @@ nmap <leader>n :NERDTreeToggle<CR>
 
 " fzf through buffers
 function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
+    redir => ls
+    silent ls
+    redir END
+    return split(ls, '\n')
 endfunction
 
 function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
 
 nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
+            \   'source':  reverse(<sid>buflist()),
+            \   'sink':    function('<sid>bufopen'),
+            \   'options': '+m',
+            \   'down':    len(<sid>buflist()) + 2
+            \ })<CR>
 
 
 set number relativenumber				" Have line number AND relative number, bonkers
@@ -55,7 +59,7 @@ Plug 'VundleVim/Vundle.vim'
 
 " --- Use neovim if we have it ---
 if has('nvim')
-	Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 endif
 
 
@@ -102,8 +106,8 @@ let g:ale_lint_delay=1000				" Woah slow down matey
 " -- Lightline --
 " Nice colors c:
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night',
-      \ }
+            \ 'colorscheme': 'Tomorrow_Night',
+            \ }
 
 " -- NERDtree --
 :let g:NERDTreeWinSize=20				" It's the size. Of the window. C'mon man
@@ -127,5 +131,5 @@ nnoremap <silent> <Alt-\\> :TmuxNavigatePrevious<cr>
 " -- Devicons --
 " Refresh devicons when sourcing vimrc (for troubleshooting)
 if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
+    call webdevicons#refresh()
 endif
