@@ -21,8 +21,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Importable configurations.
-if [ -f ~/.importable_conf ]; then
-    source ~/.importable_conf
+if [ -f ~/.importable.zsh]; then
+    source ~/.importable.zsh
 fi
 
 # FZF configuration for zsh

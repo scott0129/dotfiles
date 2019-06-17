@@ -1,24 +1,29 @@
 "----------------------- Vanilla Vim Settings -------------------"
-set nocompatible              " be iMproved, required
-filetype plugin on                 " required
-set noshowmode
-set shiftwidth=0
-set tabstop=2
-syntax on
+set nocompatible          		   		" Not compatible with vi
+filetype plugin on              	   	" Because I'm a pleb and use plugins
+set noshowmode							" Doesn't show --INSERT--
+set tabstop=4							" 4 space tabs
+set shiftwidth=0						" shiftwidth = tabstop
 
-set omnifunc=syntaxcomplete#Complete
+syntax on								" Syntax highlighting! Colors!
 
-" leader key activation visual feedback
-set showcmd
+set shellcmdflag=-ic					" have :! behave like cmd prompt
 
-" rebind leader key
-let mapleader=" "
+set colorcolumn=99						" ruler
+
+set showcmd 							" leader key activation visual feedback
+
+let mapleader=" "						" spacebar leader key for maximum productivity
 
 " open/close tag list
 nnoremap <leader>t :TlistToggle<CR>
 
 " fly through buffers
 nnoremap <leader>l :ls<CR>:b<space>
+
+" open/close nerdtree
+nmap <leader>n :NERDTreeToggle<CR>
+
 
 " fzf through buffers
 function! s:buflist()
@@ -39,94 +44,88 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
 
-" open/close nerdtree
-nmap <leader>n :NERDTreeToggle<CR>
 
-set number relativenumber
+set number relativenumber				" Have line number AND relative number, bonkers
 
+set encoding=UTF-8						" Cause we're a modern society that uses DevIcons
 
-" Needed for DevIcons
-set encoding=UTF-8
-
-
-"----------------------- vim-plug Settings -------------------"
+"----------------------- Plugins ----------------------"
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 
+" --- Use neovim if we have it ---
+if has('nvim')
+	Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+endif
+
 
 " --- Cosmetic ---
-Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'ryanoasis/vim-devicons'
+Plug 'morhetz/gruvbox'					" Nice colors
+Plug 'itchyny/lightline.vim'			" Little status line on the bottom
+Plug 'airblade/vim-gitgutter'			" Lets me know which lines are new/deleted/modified
+Plug 'ryanoasis/vim-devicons'			" Nice icons for Nerdtree c:
 
 
 " --- Navigation ---
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'universal-ctags/ctags'
-Plug 'vim-scripts/taglist.vim'
-Plug 'scrooloose/nerdtree'
-Plug '~/.fzf'
+Plug 'christoomey/vim-tmux-navigator'	" Navigate between vim & tmux using the same keybindings
+Plug 'universal-ctags/ctags'			" Create tags for navigating functions
+Plug 'vim-scripts/taglist.vim'			" and then have a nice list of them
+Plug 'scrooloose/nerdtree'				" Filetree navigation!
+Plug '~/.fzf'							" Fuzzy find for jetpack flying through files
 
 
 " --- Linter/Code Completion ---
-Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
-
+Plug 'w0rp/ale'							" Asynchronous Lint Engine cause my code doesn't compile
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'} 	" Text completion
 
 
 " --- Misc QOL --- 
-Plug 'tomtom/tcomment_vim'
-Plug 'qpkorr/vim-bufkill'
+Plug 'tomtom/tcomment_vim'				" Ezpz creating comments
+Plug 'qpkorr/vim-bufkill'				" Kill buffers without closing the split!!
 
 
 call plug#end()
 
 " -------------------- Plugin Settings ---------------------
 
+" -- YouCompleteMe --
+let g:ycm_autoclose_preview_window_after_insertion = 1		" autoclose preview window
 
-" following are for linter:
-nmap <silent> <C-k> <Plug>(ale_previous)
-nmap <silent> <C-j> <Plug>(ale_next)
-set laststatus=2
-let g:ale_lint_delay=1000
+" -- ALE --
+" Next error
+nmap <silent> <leader>ak <Plug>(ale_previous)
+" Previous Error
+nmap <silent> <leader>aj <Plug>(ale_next)
+set laststatus=2						" Make room for lightline
+let g:ale_lint_delay=1000				" Woah slow down matey
 
-" following are for lightline:
+" -- Lightline --
+" Nice colors c:
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night',
       \ }
 
-" NERDtree Settings:
-:let g:NERDTreeWinSize=20
+" -- NERDtree --
+:let g:NERDTreeWinSize=20				" It's the size. Of the window. C'mon man
 
-" Gruvbox Settings:
-"let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'hard'
-set background=dark
-"set background=light
-"if exists('+termguicolors')
-"  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"  set termguicolors
-"endif
+" -- Gruvbox --
+colorscheme gruvbox
+"let g:gruvbox_italic=1					" Italics don't like tmux
+let g:gruvbox_contrast_dark = 'hard'	" Cause we go hard bois
+let g:gruvbox_contrast_light = 'hard'	" even if we're light-theme
+set background=dark						" but we're not
+"set background=light					" but in case we want to
 
-"let g:solarized_term_italics=1
-"let g:solarized_visibility='high'
-
-"disable ale
-"set runtimepath-=~/.vim/bundle/ale
-
-" tmux vim navigator
-"let g:tmux_navigator_no_mappings = 1
+" -- tmux-vim-navigator --
+" Super simple way to move between tmux + vim panes using just one key binding
 nnoremap <silent> <Alt-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <Alt-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <Alt-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <Alt-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <Alt-\\> :TmuxNavigatePrevious<cr>k
+nnoremap <silent> <Alt-\\> :TmuxNavigatePrevious<cr>
 
-colorscheme gruvbox
-
+" -- Devicons --
+" Refresh devicons when sourcing vimrc (for troubleshooting)
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
