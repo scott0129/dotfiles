@@ -7,17 +7,21 @@ set softtabstop=0                       " No softtab
 set shiftwidth=0                        " shiftwidth = tabstop
 set expandtab                           " use spaces not tabs
 set smarttab                            " backspace deletes tab-amount of spaces
-
+set ignorecase                          " case insensitive 
+set smartcase                           " unless it's a capital letter 
 
 syntax on                               " Syntax highlighting! Colors!
 
 set shellcmdflag=-ic                    " have :! behave like cmd prompt
 
-set colorcolumn=99                      " ruler
+set colorcolumn=101                     " ruler
 
 set showcmd                             " leader key activation visual feedback
 
 let mapleader=" "                       " spacebar leader key for maximum productivity
+
+
+set number                              " Have line numbers!
 
 " open/close tag list
 nnoremap <leader>t :TlistToggle<CR>
@@ -28,6 +32,8 @@ nnoremap <leader>l :ls<CR>:b<space>
 " open/close nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
 
+" insert single char
+nnoremap <leader>i i_<Esc>r
 
 " fzf through buffers
 function! s:buflist()
@@ -49,9 +55,7 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
             \ })<CR>
 
 
-set number relativenumber               " Have line number AND relative number, bonkers
-
-set encoding=UTF-8                      " Cause we're a modern society that uses DevIcons
+set encoding=UTF-8                      " For DevIcons!
 
 "----------------------- Plugins ----------------------"
 call plug#begin('~/.vim/plugged')
@@ -110,15 +114,14 @@ let g:lightline = {
             \ }
 
 " -- NERDtree --
-:let g:NERDTreeWinSize=20               " It's the size. Of the window. C'mon man
+let g:NERDTreeWinSize=20               " The size, of the window
 
 " -- Gruvbox --
-colorscheme gruvbox
 "let g:gruvbox_italic=1                 " Italics don't like tmux
 let g:gruvbox_contrast_dark = 'hard'    " Cause we go hard bois
 let g:gruvbox_contrast_light = 'hard'   " even if we're light-theme
-set background=dark                     " but we're not
-"set background=light                   " but in case we want to
+colorscheme gruvbox                     " groovy
+set background=dark                     " dark mode
 
 " -- tmux-vim-navigator --
 " Super simple way to move between tmux + vim panes using just one key binding
@@ -133,3 +136,11 @@ nnoremap <silent> <Alt-\\> :TmuxNavigatePrevious<cr>
 if exists("g:loaded_webdevicons")
     call webdevicons#refresh()
 endif
+
+
+
+" --------- Vanilla Vim Settings To Override Plugin Settings --------
+
+set cursorline                          " Highlight current line
+highlight clear cursorline              " But only the line number (must be after colorscheme)
+
