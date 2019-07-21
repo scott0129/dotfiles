@@ -80,11 +80,13 @@ Plug 'universal-ctags/ctags'            " Create tags for navigating functions
 Plug 'vim-scripts/taglist.vim'          " and then have a nice list of them
 Plug 'scrooloose/nerdtree'              " Filetree navigation!
 Plug '~/.fzf'                           " Fuzzy find for jetpack flying through files
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 
 " --- Linter/Code Completion ---
 Plug 'w0rp/ale'                         " Asynchronous Lint Engine cause my code doesn't compile
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}    " Text completion
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}    " Text completion
 
 
 " --- Misc QOL --- 
