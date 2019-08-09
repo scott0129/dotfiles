@@ -20,11 +20,13 @@ set showcmd                             " leader key activation visual feedback
 
 let mapleader=" "                       " spacebar leader key for maximum productivity
 
-
 set number                              " Have line numbers!
 
+set mouse=a                             " i'm sorry
+
 " open/close tag list
-nnoremap <leader>t :TlistToggle<CR>
+nnoremap <leader>t :TlistOpen<CR>
+let Tlist_Close_On_Select = 1           " Close taglist after selecting
 
 " fly through buffers
 nnoremap <leader>l :ls<CR>:b<space>

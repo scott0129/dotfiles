@@ -5,8 +5,10 @@ if command -v nvim >/dev/null 2>&1; then
 	alias vim="nvim"
 fi
 
+# Useful Git Aliases
 alias gitb="git branch"
 alias gbvv="git branch -vv"
+alias glog="git log --graph --decorate"
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'

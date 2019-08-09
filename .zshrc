@@ -14,6 +14,7 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="refined"
+# ZSH_THEME="agnoster"
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
