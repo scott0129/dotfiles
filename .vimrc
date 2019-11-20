@@ -12,8 +12,6 @@ set smartcase                           " unless it's a capital letter
 
 syntax on                               " Syntax highlighting! Colors!
 
-set shellcmdflag=-ic                    " have :! behave like cmd prompt
-
 set colorcolumn=101                     " ruler
 
 set showcmd                             " leader key activation visual feedback
@@ -24,12 +22,14 @@ set number                              " Have line numbers!
 
 set mouse=a                             " i'm sorry
 
+set wildmode=longest:list,full          " The little autocomplete menu when pressing tab in cmd-mode
+
 " open/close tag list
 nnoremap <leader>t :TlistOpen<CR>
 let Tlist_Close_On_Select = 1           " Close taglist after selecting
 
 " fly through buffers
-nnoremap <leader>l :ls<CR>:b<space>
+nnoremap <leader><CR> :ls<CR>:b<space>
 
 " open/close nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -37,24 +37,10 @@ nmap <leader>n :NERDTreeToggle<CR>
 " insert single char
 nnoremap <leader>i i_<Esc>r
 
-" fzf through buffers
-function! s:buflist()
-    redir => ls
-    silent ls
-    redir END
-    return split(ls, '\n')
-endfunction
 
 function! s:bufopen(e)
     execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
-
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-            \   'source':  reverse(<sid>buflist()),
-            \   'sink':    function('<sid>bufopen'),
-            \   'options': '+m',
-            \   'down':    len(<sid>buflist()) + 2
-            \ })<CR>
 
 
 set encoding=UTF-8                      " For DevIcons!
