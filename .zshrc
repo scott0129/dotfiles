@@ -9,12 +9,10 @@ if command -v nvim >/dev/null 2>&1; then
  export EDITOR="nvim"
 fi
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="refined"
-# ZSH_THEME="agnoster"
+# Scripts
+if [ -d ~/.scripts ]; then
+    export PATH=$PATH:~/scripts
+fi
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
@@ -91,6 +89,10 @@ plugins=(
 	z
 )
 
+ZSH_THEME=""
+# ZSH_THEME="refined"
+# ZSH_THEME="agnoster"
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -118,3 +120,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+autoload -U promptinit; promptinit
+
+zstyle :prompt:pure:path color '#00FF00'
+
+prompt pure
