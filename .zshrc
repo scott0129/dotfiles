@@ -124,6 +124,6 @@ source $ZSH/oh-my-zsh.sh
 # Pure prompt
 fpath+=("$HOME/.zsh/pure")
 autoload -U promptinit; promptinit
-zstyle :prompt:pure:path color '#00FF00'
+#zstyle :prompt:pure:path color '#FFFF00'
 prompt pure
 
