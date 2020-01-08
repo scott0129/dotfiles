@@ -121,8 +121,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Pure prompt
+fpath+=("$HOME/.zsh/pure")
 autoload -U promptinit; promptinit
-
 zstyle :prompt:pure:path color '#00FF00'
-
 prompt pure
+
