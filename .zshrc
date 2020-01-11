@@ -130,3 +130,4 @@ zstyle :prompt:pure:host color magenta
 
 prompt pure
 
+PROMPT='%{$fg[white]%}[%D{%L:%M:%S}] '$PROMPT
