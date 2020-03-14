@@ -19,8 +19,9 @@ set showcmd                             " leader key activation visual feedback
 let mapleader=" "                       " spacebar leader key for maximum productivity
 
 set number                              " Have line numbers!
+set relativenumber                      " But also relative
 
-set mouse=a                             " i'm sorry
+set mouse=a                             " heathenous
 
 set wildmode=longest:list,full          " The little autocomplete menu when pressing tab in cmd-mode
 
@@ -36,6 +37,10 @@ nmap <leader>n :NERDTreeToggle<CR>
 
 " insert single char
 nnoremap <leader>i i_<Esc>r
+
+" Sane line movement
+nnoremap j gj
+nnoremap k gk
 
 
 function! s:bufopen(e)
@@ -92,7 +97,7 @@ Plug 'junegunn/fzf.vim'
 " --- Linter/Code Completion ---
 Plug 'w0rp/ale'                         " Asynchronous Lint Engine cause my code doesn't compile
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}    " Text completion
-
+Plug 'elmcast/elm-vim'                  " Elm support
 
 " --- Misc QOL --- 
 Plug 'tomtom/tcomment_vim'              " Ezpz creating comments
@@ -106,13 +111,21 @@ call plug#end()
 " -- YouCompleteMe --
 let g:ycm_autoclose_preview_window_after_insertion = 1      " autoclose preview window
 
+
 " -- ALE --
 " Next error
 nmap <silent> <leader>ak <Plug>(ale_previous)
+
 " Previous Error
 nmap <silent> <leader>aj <Plug>(ale_next)
 set laststatus=2                        " Make room for lightline
-let g:ale_lint_delay=1000               " Woah slow down matey
+let g:ale_lint_delay=1000               " Woah slow down
+
+" Use stack ghc instead of just ghc
+let g:ale_linters = {
+    \   'haskell': ['stack-ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
+    \}
+
 
 " -- Lightline --
 " Nice colors c:
@@ -120,8 +133,10 @@ let g:lightline = {
             \ 'colorscheme': 'Tomorrow_Night',
             \ }
 
+
 " -- NERDtree --
 let g:NERDTreeWinSize=20               " The size, of the window
+
 
 " -- Gruvbox --
 "let g:gruvbox_italic=1                 " Italics don't like tmux
@@ -143,7 +158,6 @@ nnoremap <silent> <Alt-\\> :TmuxNavigatePrevious<cr>
 if exists("g:loaded_webdevicons")
     call webdevicons#refresh()
 endif
-
 
 
 " --------- Vanilla Vim Settings To Override Plugin Settings --------
