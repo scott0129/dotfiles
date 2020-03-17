@@ -25,6 +25,11 @@ set mouse=a                             " heathenous
 
 set wildmode=longest:list,full          " The little autocomplete menu when pressing tab in cmd-mode
 
+set undofile                            " Maintain persistent undo history
+set undodir=~/.vim/undodir              " Don't make undo files in project directory
+
+
+
 " open/close tag list
 nnoremap <leader>t :TlistOpen<CR>
 let Tlist_Close_On_Select = 1           " Close taglist after selecting
