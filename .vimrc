@@ -15,6 +15,7 @@ syntax on                               " Syntax highlighting! Colors!
 set colorcolumn=101                     " ruler
 
 set showcmd                             " leader key activation visual feedback
+set nowrap                              " some sanity in line wrapping
 
 let mapleader=" "                       " spacebar leader key for maximum productivity
 
