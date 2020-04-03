@@ -4,6 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
+
 # Set editor to neovim
 if command -v nvim >/dev/null 2>&1; then
  export EDITOR="nvim"
@@ -16,7 +17,7 @@ fi
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+    source ~/.shell_aliases
 fi
 
 # Importable configurations.
@@ -131,3 +132,18 @@ zstyle :prompt:pure:host color magenta
 prompt pure
 
 PROMPT='%{$fg[white]%}[%D{%L:%M:%S}] '$PROMPT
+
+# Node Version Manager exports
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Export go binaries
+export PATH=$PATH:/usr/local/go/bin
+
+# Export Android Studio cli tools
+export ANDROID_HOME=~/Android/Sdk
+export ANDROID_SDK=$ANDROID_HOME
+export PATH=$PATH:~/Android/Sdk/platform-tools:~/Android/Sdk/emulator
+
