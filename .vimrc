@@ -10,7 +10,12 @@ set smarttab                            " backspace deletes tab-amount of spaces
 set ignorecase                          " case insensitive 
 set smartcase                           " unless it's a capital letter 
 
+set hlsearch                            " highlight searches
+set incsearch                           " show search results while typing 
+
 syntax on                               " Syntax highlighting! Colors!
+
+set backupcopy=yes                      " Remove file rename swapping to work with Parcel HMR
 
 set colorcolumn=101                     " ruler
 
@@ -35,23 +40,27 @@ set undodir=~/.vim/undodir              " Don't make undo files in project direc
 nnoremap <leader>t :TlistOpen<CR>
 let Tlist_Close_On_Select = 1           " Close taglist after selecting
 
-" fly through buffers
+
+" fly through buffers using string matching!
 nnoremap <leader><CR> :ls<CR>:b<space>
+
+function! s:bufopen(e)
+    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
 
 " open/close nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
 
+
 " insert single char
 nnoremap <leader>i i_<Esc>r
+
 
 " Sane line movement
 nnoremap j gj
 nnoremap k gk
 
-
-function! s:bufopen(e)
-    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
 
 
 set encoding=UTF-8                      " For DevIcons!
@@ -104,6 +113,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'                         " Asynchronous Lint Engine cause my code doesn't compile
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}    " Text completion
 Plug 'elmcast/elm-vim'                  " Elm support
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
 
 " --- Misc QOL --- 
 Plug 'tomtom/tcomment_vim'              " Ezpz creating comments
@@ -128,9 +139,16 @@ set laststatus=2                        " Make room for lightline
 let g:ale_lint_delay=1000               " Woah slow down
 
 " Use stack ghc instead of just ghc
+" Also don't use tsserver or prettier for typescript because of weird interaction with
+" vue, and prettier erros are getting annoying when there's automatic fix
 let g:ale_linters = {
     \   'haskell': ['stack-ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
+    \   'typescript': ['eslint', 'standard'],   
     \}
+
+" See which linter is complaining
+let g:ale_echo_msg_format = '%linter% says %s'
+
 
 
 " -- Lightline --
