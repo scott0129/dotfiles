@@ -16,7 +16,7 @@ if [ -d ~/.scripts ]; then
 fi
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
+if [ -f ~/.shell_aliases ]; then
     source ~/.shell_aliases
 fi
 
@@ -147,3 +147,6 @@ export ANDROID_HOME=~/Android/Sdk
 export ANDROID_SDK=$ANDROID_HOME
 export PATH=$PATH:~/Android/Sdk/platform-tools:~/Android/Sdk/emulator
 
+# Export CUDA toolkit
+export PATH=/usr/local/cuda/bin:/usr/local/cuda/nsightCompute-2019.5.0${PATH:+:${PATH}}
+# export LD_LIBRARY_PATH=/usr/local/cuda/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
