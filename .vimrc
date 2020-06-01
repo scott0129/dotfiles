@@ -139,11 +139,8 @@ set laststatus=2                        " Make room for lightline
 let g:ale_lint_delay=1000               " Woah slow down
 
 " Use stack ghc instead of just ghc
-" Also don't use tsserver or prettier for typescript because of weird interaction with
-" vue, and prettier erros are getting annoying when there's automatic fix
 let g:ale_linters = {
     \   'haskell': ['stack-ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
-    \   'typescript': ['eslint', 'standard'],   
     \}
 
 " See which linter is complaining
