@@ -97,6 +97,7 @@ Plug 'morhetz/gruvbox'                  " Nice colors
 Plug 'itchyny/lightline.vim'            " Little status line on the bottom
 Plug 'airblade/vim-gitgutter'           " Lets me know which lines are new/deleted/modified
 Plug 'ryanoasis/vim-devicons'           " Nice icons for Nerdtree c:
+Plug 'mustache/vim-mustache-handlebars' " Syntax highlighting for Mustache and Handlebars
 
 
 " --- Navigation ---
@@ -128,6 +129,8 @@ call plug#end()
 " -- YouCompleteMe --
 let g:ycm_autoclose_preview_window_after_insertion = 1      " autoclose preview window
 
+" -- Vim Mustache Handlebars -- 
+let g:mustache_abbreviations = 1
 
 " -- ALE --
 " Next error
