@@ -17,7 +17,7 @@ syntax on                               " Syntax highlighting! Colors!
 
 set backupcopy=yes                      " Remove file rename swapping to work with Parcel HMR
 
-set colorcolumn=101                     " ruler
+set colorcolumn=101                     " wanna be your ruuuler (ruuuulerrr)
 
 set showcmd                             " leader key activation visual feedback
 set nowrap                              " some sanity in line wrapping
@@ -27,12 +27,12 @@ let mapleader=" "                       " spacebar leader key for maximum produc
 set number                              " Have line numbers!
 set relativenumber                      " But also relative
 
-set mouse=a                             " heathenous
+set mouse=a                             " oh no
 
 set wildmode=longest:list,full          " The little autocomplete menu when pressing tab in cmd-mode
 
 set undofile                            " Maintain persistent undo history
-set undodir=~/.vim/undodir              " Don't make undo files in project directory
+set undodir=~/.vim/undodir              " Put all the undo records somewhere else
 
 
 
