@@ -7,8 +7,8 @@ set softtabstop=0                       " No softtab
 set shiftwidth=0                        " shiftwidth = tabstop
 set expandtab                           " use spaces not tabs
 set smarttab                            " backspace deletes tab-amount of spaces
-set ignorecase                          " case insensitive 
-set smartcase                           " unless it's a capital letter 
+set ignorecase                          " case insensitive.
+set smartcase                           " case insensitive, UNLESS it's a capital letter 
 
 set hlsearch                            " highlight searches
 set incsearch                           " show search results while typing 
