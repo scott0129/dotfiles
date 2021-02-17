@@ -4,6 +4,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
+# auto_cd is automatically going into a file without needing to type 'cd' before it
+unsetopt auto_cd
 
 # Set editor to neovim
 if command -v nvim >/dev/null 2>&1; then
@@ -122,19 +124,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Pure prompt
-fpath+=("$HOME/.zsh/pure")
-autoload -U promptinit; promptinit
-
-zstyle :prompt:pure:user color white
-zstyle :prompt:pure:host color magenta
-
-prompt pure
-
-PROMPT='%{$fg[white]%}[%D{%L:%M:%S}] '$PROMPT
-
-# Node Version Manager exports
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -150,3 +139,7 @@ export PATH=$PATH:~/Android/Sdk/platform-tools:~/Android/Sdk/emulator
 # Export CUDA toolkit
 export PATH=/usr/local/cuda/bin:/usr/local/cuda/nsightCompute-2019.5.0${PATH:+:${PATH}}
 # export LD_LIBRARY_PATH=/usr/local/cuda/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+
+# Initialize Starship prompt
+eval "$(starship init zsh)"
