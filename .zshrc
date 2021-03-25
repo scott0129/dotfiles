@@ -140,6 +140,10 @@ export PATH=$PATH:~/Android/Sdk/platform-tools:~/Android/Sdk/emulator
 export PATH=/usr/local/cuda/bin:/usr/local/cuda/nsightCompute-2019.5.0${PATH:+:${PATH}}
 # export LD_LIBRARY_PATH=/usr/local/cuda/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
+# Export Deno
+export DENO_INSTALL="/Users/scott/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 
 # Initialize Starship prompt
 eval "$(starship init zsh)"
