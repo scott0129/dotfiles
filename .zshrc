@@ -18,8 +18,8 @@ if [ -d ~/.scripts ]; then
 fi
 
 # Alias definitions.
-if [ -f ~/.shell_aliases ]; then
-    source ~/.shell_aliases
+if [ -f ~/.shell_aliases.sh ]; then
+    source ~/.shell_aliases.sh
 fi
 
 # Importable configurations.
